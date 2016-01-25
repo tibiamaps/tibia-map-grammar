@@ -1,0 +1,8 @@
+script:
+  - "! grep '<ufwb version=' tibia-map.grammar"
+  - "xmllint --format tibia-map.grammar > /dev/null"
+git:
+  depth: 1
+branches:
+  only:
+    - /^.*$/
