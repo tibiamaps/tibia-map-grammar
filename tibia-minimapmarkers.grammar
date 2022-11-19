@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ufwb version="1.17">
+    <grammar name="Tibia minimapmarkers.bin file" start="id:1" author="Mathias Bynens, mgis90" fileextension="bin" complete="yes">
+        <description>Grammar for Tibia new marker file</description>
+        <!-- https://github.com/tibiamaps/tibia-map-grammar -->
+        <structure name="Tibia minimapmarkers.bin file" id="1" encoding="ISO_8859-1:1987" endian="big" signed="no">
+            <structure name="oldMarker" id="2" length="1" disabled="yes" alignment="0" repeat="id:0" fillcolor="FFAA00">
+                <number name="xPosition" id="3" fillcolor="AAAAFF" type="integer" length="1"/>
+                <number name="xTile" id="4" fillcolor="D7D7FF" type="integer" length="1"/>
+                <binary name="__padding1" mustmatch="yes" id="5" fillcolor="000000" length="2">
+                    <fixedvalues>
+                        <fixedvalue name="two blank bytes" value="0000"/>
+                    </fixedvalues>
+                </binary>
+                <number name="yPosition" id="6" fillcolor="FFCAAF" type="integer" length="1"/>
+                <number name="yTile" id="7" fillcolor="FFE5D7" type="integer" length="1"/>
+                <binary name="__padding2" mustmatch="yes" id="8" fillcolor="000000" length="2">
+                    <fixedvalues>
+                        <fixedvalue name="two blank bytes" value="0000"/>
+                    </fixedvalues>
+                </binary>
+                <number name="descriptionLength" id="9" fillcolor="AAFFFF" type="integer" length="2" endian="little"/>
+                <string name="description" id="10" fillcolor="FFFF7F" type="fixed-length" length="descriptionLength" encoding="ISO_8859-1:1987"/>
+            </structure>
+            <structure name="Marker" id="12" length="length+2" alignment="0" repeatmax="-1">
+                <binary name="start" id="13" strokecolor="FFFFFF" fillcolor="C7FFC3" length="1">
+                    <fixedvalues>
+                        <fixedvalue name="start" value="0A"/>
+                    </fixedvalues>
+                </binary>
+                <number name="length" id="14" strokecolor="FFFFFF" type="integer" length="1"/>
+                <binary name="sep" id="15" strokecolor="FFFFFF" fillcolor="D1D1D1" length="1">
+                    <fixedvalues>
+                        <fixedvalue name="sep" value="0A"/>
+                    </fixedvalues>
+                </binary>
+                <number name="lenCoords" id="16" strokecolor="FFFFFF" type="integer" length="1"/>
+                <structure name="coords" id="17" length="lenCoords+1">
+                    <number name="xPos" id="18" strokecolor="FFFFFF" fillcolor="C5FFE0" repeatmax="4" type="integer" length="1" minval="0" maxval="255"/>
+                    <binary name="xPosEnd" id="19" strokecolor="FFFFFF" fillcolor="D1D1D1" length="1">
+                        <fixedvalues>
+                            <fixedvalue name="end" value="10"/>
+                        </fixedvalues>
+                    </binary>
+                    <number name="yPos" id="20" strokecolor="FFFFFF" fillcolor="B9E3FF" repeatmax="3" type="integer" length="1"/>
+                    <binary name="yPosEnd" id="21" strokecolor="FFFFFF" fillcolor="D1D1D1" length="1">
+                        <fixedvalues>
+                            <fixedvalue name="end" value="18"/>
+                        </fixedvalues>
+                    </binary>
+                    <number name="floor" id="22" strokecolor="FFFFFF" fillcolor="FFAF86" type="integer" length="1" maxval="15"/>
+                    <binary name="floorEnd" id="23" strokecolor="FFFFFF" fillcolor="BABABA" length="1">
+                        <fixedvalues>
+                            <fixedvalue name="end" value="10"/>
+                        </fixedvalues>
+                    </binary>
+                </structure>
+                <number name="icon" mustmatch="yes" id="25" strokecolor="FFFFFF" fillcolor="FFFC9B" type="integer" length="1" endian="little" maxval="19">
+                    <fixedvalues>
+                        <fixedvalue name="checkmark" value="0"/>
+                        <fixedvalue name="?" value="1"/>
+                        <fixedvalue name="!" value="2"/>
+                        <fixedvalue name="star" value="3"/>
+                        <fixedvalue name="crossmark" value="4"/>
+                        <fixedvalue name="cross" value="5"/>
+                        <fixedvalue name="mouth" value="6"/>
+                        <fixedvalue name="shovel" value="7"/>
+                        <fixedvalue name="sword" value="8"/>
+                        <fixedvalue name="flag" value="9"/>
+                        <fixedvalue name="lock" value="10"/>
+                        <fixedvalue name="bag" value="11"/>
+                        <fixedvalue name="skull" value="12"/>
+                        <fixedvalue name="$" value="13"/>
+                        <fixedvalue name="red up arrow" value="14"/>
+                        <fixedvalue name="red down arrow" value="15"/>
+                        <fixedvalue name="red right arrow" value="16"/>
+                        <fixedvalue name="red left arrow" value="17"/>
+                        <fixedvalue name="green up arrow" value="18"/>
+                        <fixedvalue name="green down arrow" value="19"/>
+                    </fixedvalues>
+                </number>
+                <binary name="separator" id="26" strokecolor="FFFFFF" fillcolor="C2C2C2" length="1">
+                    <fixedvalues>
+                        <fixedvalue name="sep" value="1A"/>
+                    </fixedvalues>
+                </binary>
+                <binary name="lenString" id="27" strokecolor="89E4E4" fillcolor="7CE3E3" length="1"/>
+                <structure name="StringDesc" id="28" length="lenString" disabled="yes" repeatmin="0" encoding="ISO_8859-1:1987" endian="big" signed="no">
+                    <string name="Description" id="29" disabled="yes" strokecolor="FFFFFF" fillcolor="A9FFFF" type="delimiter-terminated" delimiter="20"/>
+                </structure>
+                <string name="text" id="31" strokecolor="FFFFFF" fillcolor="AAEEE9" type="delimiter-terminated" delimiter="2000"/>
+                <binary name="endMarker" id="32" disabled="yes" strokecolor="FFFFFF" fillcolor="FFBDBD" length="2">
+                    <fixedvalues>
+                        <fixedvalue name="PROPER END" value="2000"/>
+                    </fixedvalues>
+                </binary>
+            </structure>
+        </structure>
+    </grammar>
+</ufwb>
